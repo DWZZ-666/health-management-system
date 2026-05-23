@@ -1,0 +1,1085 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "nickname": "系统管理员",
+      "avatar": "",
+      "email": "admin@health.com",
+      "phone": "13800001111",
+      "gender": "male",
+      "age": 35,
+      "role": "admin",
+      "createdAt": "2025-01-01"
+    },
+    {
+      "id": 2,
+      "username": "zhangsan",
+      "password": "123456",
+      "nickname": "张三",
+      "avatar": "",
+      "email": "zhangsan@example.com",
+      "phone": "13800002222",
+      "gender": "male",
+      "age": 45,
+      "role": "user",
+      "createdAt": "2025-03-15"
+    },
+    {
+      "id": 3,
+      "username": "lisi",
+      "password": "123456",
+      "nickname": "李四",
+      "avatar": "",
+      "email": "lisi@example.com",
+      "phone": "13800003333",
+      "gender": "female",
+      "age": 52,
+      "role": "user",
+      "createdAt": "2025-02-20"
+    },
+    {
+      "id": 4,
+      "username": "wangwu",
+      "password": "123456",
+      "nickname": "王五",
+      "avatar": "",
+      "email": "wangwu@example.com",
+      "phone": "13800004444",
+      "gender": "male",
+      "age": 28,
+      "role": "user",
+      "createdAt": "2025-04-10"
+    },
+    {
+      "id": 5,
+      "username": "zhaoliu",
+      "password": "123456",
+      "nickname": "赵六",
+      "avatar": "",
+      "email": "zhaoliu@example.com",
+      "phone": "13800005555",
+      "gender": "female",
+      "age": 61,
+      "role": "user",
+      "createdAt": "2025-05-05"
+    }
+  ],
+  "healthRecords": [
+    {
+      "id": 1,
+      "userId": 2,
+      "date": "2025-06-15",
+      "height": 175,
+      "weight": 78,
+      "bmi": 25.5,
+      "systolicBP": 138,
+      "diastolicBP": 88,
+      "bloodSugar": 5.8,
+      "totalCholesterol": 5.6,
+      "triglycerides": 2.1,
+      "hdl": 1.1,
+      "ldl": 3.4,
+      "heartRate": 78,
+      "sleepHours": 6.5,
+      "exerciseFrequency": 2,
+      "smokingStatus": "former",
+      "alcoholConsumption": "light",
+      "familyHistory": [
+        "hypertension"
+      ],
+      "createdAt": "2025-06-15T10:30:00Z",
+      "updatedAt": "2025-06-15T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "date": "2025-03-10",
+      "height": 175,
+      "weight": 80,
+      "bmi": 26.1,
+      "systolicBP": 142,
+      "diastolicBP": 92,
+      "bloodSugar": 6.2,
+      "totalCholesterol": 6,
+      "triglycerides": 2.5,
+      "hdl": 1,
+      "ldl": 3.8,
+      "heartRate": 82,
+      "sleepHours": 6,
+      "exerciseFrequency": 1,
+      "smokingStatus": "former",
+      "alcoholConsumption": "moderate",
+      "familyHistory": [
+        "hypertension",
+        "diabetes"
+      ],
+      "createdAt": "2025-03-10T14:00:00Z",
+      "updatedAt": "2025-03-10T14:00:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "date": "2025-06-14",
+      "height": 160,
+      "weight": 62,
+      "bmi": 24.2,
+      "systolicBP": 130,
+      "diastolicBP": 85,
+      "bloodSugar": 5.4,
+      "totalCholesterol": 4.9,
+      "triglycerides": 1.5,
+      "hdl": 1.3,
+      "ldl": 2.9,
+      "heartRate": 74,
+      "sleepHours": 7,
+      "exerciseFrequency": 3,
+      "smokingStatus": "never",
+      "alcoholConsumption": "none",
+      "familyHistory": [],
+      "createdAt": "2025-06-14T09:15:00Z",
+      "updatedAt": "2025-06-14T09:15:00Z"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "category": "基本信息",
+      "type": "number",
+      "title": "您的年龄是？",
+      "required": true,
+      "min": 1,
+      "max": 120,
+      "unit": "岁",
+      "placeholder": "请输入年龄"
+    },
+    {
+      "id": 2,
+      "category": "基本信息",
+      "type": "single",
+      "title": "您的性别是？",
+      "required": true,
+      "options": [
+        {
+          "label": "男",
+          "value": "male"
+        },
+        {
+          "label": "女",
+          "value": "female"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "基本信息",
+      "type": "number",
+      "title": "您的身高（cm）",
+      "required": true,
+      "min": 100,
+      "max": 250,
+      "unit": "cm",
+      "placeholder": "请输入身高"
+    },
+    {
+      "id": 4,
+      "category": "基本信息",
+      "type": "number",
+      "title": "您的体重（kg）",
+      "required": true,
+      "min": 30,
+      "max": 200,
+      "unit": "kg",
+      "placeholder": "请输入体重"
+    },
+    {
+      "id": 5,
+      "category": "生活习惯",
+      "type": "single",
+      "title": "您吸烟吗？",
+      "required": true,
+      "options": [
+        {
+          "label": "从不吸烟",
+          "value": "never",
+          "score": 0
+        },
+        {
+          "label": "已戒烟",
+          "value": "former",
+          "score": 30
+        },
+        {
+          "label": "仍在吸烟",
+          "value": "current",
+          "score": 70
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "category": "生活习惯",
+      "type": "single",
+      "title": "您饮酒的频率是？",
+      "required": true,
+      "options": [
+        {
+          "label": "从不饮酒",
+          "value": "none",
+          "score": 0
+        },
+        {
+          "label": "偶尔少量",
+          "value": "light",
+          "score": 10
+        },
+        {
+          "label": "每周数次",
+          "value": "moderate",
+          "score": 40
+        },
+        {
+          "label": "每日饮酒",
+          "value": "heavy",
+          "score": 80
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "category": "生活习惯",
+      "type": "single",
+      "title": "您每周运动的频率是？",
+      "required": true,
+      "options": [
+        {
+          "label": "几乎不运动（0次）",
+          "value": "0",
+          "score": 80
+        },
+        {
+          "label": "偶尔运动（1-2次）",
+          "value": "1-2",
+          "score": 50
+        },
+        {
+          "label": "经常运动（3-4次）",
+          "value": "3-4",
+          "score": 20
+        },
+        {
+          "label": "坚持运动（5次以上）",
+          "value": "5+",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "category": "生活习惯",
+      "type": "number",
+      "title": "您每日平均睡眠时长是？",
+      "required": true,
+      "min": 3,
+      "max": 14,
+      "unit": "小时",
+      "placeholder": "请输入睡眠时长"
+    },
+    {
+      "id": 9,
+      "category": "生活习惯",
+      "type": "multiple",
+      "title": "您平时的饮食习惯包括？（多选）",
+      "required": false,
+      "options": [
+        {
+          "label": "高盐饮食",
+          "value": "high_salt"
+        },
+        {
+          "label": "高脂饮食",
+          "value": "high_fat"
+        },
+        {
+          "label": "高糖饮食",
+          "value": "high_sugar"
+        },
+        {
+          "label": "均衡饮食",
+          "value": "balanced"
+        },
+        {
+          "label": "清淡饮食",
+          "value": "light"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "category": "身体状况",
+      "type": "number",
+      "title": "您的收缩压（高压）是多少？",
+      "required": true,
+      "min": 60,
+      "max": 250,
+      "unit": "mmHg",
+      "placeholder": "请输入收缩压（高压）"
+    },
+    {
+      "id": 11,
+      "category": "身体状况",
+      "type": "number",
+      "title": "您的舒张压（低压）是多少？",
+      "required": true,
+      "min": 30,
+      "max": 150,
+      "unit": "mmHg",
+      "placeholder": "请输入舒张压（低压）"
+    },
+    {
+      "id": 12,
+      "category": "身体状况",
+      "type": "number",
+      "title": "您的空腹血糖值是多少？",
+      "required": true,
+      "min": 2,
+      "max": 20,
+      "unit": "mmol/L",
+      "placeholder": "请输入空腹血糖值"
+    },
+    {
+      "id": 13,
+      "category": "身体状况",
+      "type": "number",
+      "title": "您的总胆固醇是多少？",
+      "required": true,
+      "min": 2,
+      "max": 12,
+      "unit": "mmol/L",
+      "placeholder": "请输入总胆固醇"
+    },
+    {
+      "id": 14,
+      "category": "身体状况",
+      "type": "number",
+      "title": "您的甘油三酯是多少？",
+      "required": false,
+      "min": 0.3,
+      "max": 10,
+      "unit": "mmol/L",
+      "placeholder": "请输入甘油三酯"
+    },
+    {
+      "id": 15,
+      "category": "身体状况",
+      "type": "number",
+      "title": "您的静息心率是多少？",
+      "required": true,
+      "min": 40,
+      "max": 200,
+      "unit": "次/分钟",
+      "placeholder": "请输入静息心率"
+    },
+    {
+      "id": 16,
+      "category": "心理状态",
+      "type": "scale",
+      "title": "您最近两周感到紧张、焦虑或烦躁的程度？",
+      "required": true,
+      "options": [
+        {
+          "label": "完全没有",
+          "value": "0",
+          "score": 0
+        },
+        {
+          "label": "有几天",
+          "value": "1",
+          "score": 25
+        },
+        {
+          "label": "一半以上天数",
+          "value": "2",
+          "score": 50
+        },
+        {
+          "label": "几乎每天",
+          "value": "3",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "category": "心理状态",
+      "type": "scale",
+      "title": "您对目前的健康状况感到担忧吗？",
+      "required": true,
+      "options": [
+        {
+          "label": "完全不担忧",
+          "value": "0",
+          "score": 0
+        },
+        {
+          "label": "偶尔担忧",
+          "value": "1",
+          "score": 25
+        },
+        {
+          "label": "经常担忧",
+          "value": "2",
+          "score": 60
+        },
+        {
+          "label": "极度担忧",
+          "value": "3",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "category": "家族病史",
+      "type": "multiple",
+      "title": "您的直系亲属是否患有以下疾病？（多选）",
+      "required": true,
+      "options": [
+        {
+          "label": "高血压",
+          "value": "hypertension"
+        },
+        {
+          "label": "糖尿病",
+          "value": "diabetes"
+        },
+        {
+          "label": "冠心病",
+          "value": "chd"
+        },
+        {
+          "label": "脑卒中",
+          "value": "stroke"
+        },
+        {
+          "label": "高血脂症",
+          "value": "hyperlipidemia"
+        },
+        {
+          "label": "恶性肿瘤",
+          "value": "cancer"
+        },
+        {
+          "label": "无以上情况",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "category": "身体状况",
+      "type": "multiple",
+      "title": "您目前是否患有以下慢性疾病？（多选）",
+      "required": true,
+      "options": [
+        {
+          "label": "高血压",
+          "value": "hypertension"
+        },
+        {
+          "label": "糖尿病",
+          "value": "diabetes"
+        },
+        {
+          "label": "冠心病",
+          "value": "chd"
+        },
+        {
+          "label": "高血脂症",
+          "value": "hyperlipidemia"
+        },
+        {
+          "label": "脂肪肝",
+          "value": "fatty_liver"
+        },
+        {
+          "label": "无",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "category": "身体状况",
+      "type": "single",
+      "title": "您是否定期进行健康体检？",
+      "required": true,
+      "options": [
+        {
+          "label": "每年一次",
+          "value": "annual",
+          "score": 0
+        },
+        {
+          "label": "每两年一次",
+          "value": "biennial",
+          "score": 20
+        },
+        {
+          "label": "偶尔体检",
+          "value": "occasional",
+          "score": 50
+        },
+        {
+          "label": "从不体检",
+          "value": "never",
+          "score": 80
+        }
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "userId": 2,
+      "overallScore": 78,
+      "overallLevel": "good",
+      "riskIndicators": [
+        {
+          "name": "血压",
+          "value": 138,
+          "normalRange": [
+            90,
+            139
+          ],
+          "unit": "mmHg",
+          "level": "borderline",
+          "score": 75,
+          "suggestions": [
+            "注意低盐饮食",
+            "每周测量血压1-2次",
+            "增加有氧运动"
+          ]
+        },
+        {
+          "name": "空腹血糖",
+          "value": 5.8,
+          "normalRange": [
+            3.9,
+            6.1
+          ],
+          "unit": "mmol/L",
+          "level": "normal",
+          "score": 82,
+          "suggestions": [
+            "保持均衡饮食",
+            "定期年度体检"
+          ]
+        },
+        {
+          "name": "总胆固醇",
+          "value": 5.6,
+          "normalRange": [
+            2.8,
+            5.2
+          ],
+          "unit": "mmol/L",
+          "level": "borderline",
+          "score": 68,
+          "suggestions": [
+            "控制红肉和油炸食品",
+            "多吃坚果和鱼类",
+            "增加运动频率"
+          ]
+        },
+        {
+          "name": "甘油三酯",
+          "value": 2.1,
+          "normalRange": [
+            0.4,
+            1.7
+          ],
+          "unit": "mmol/L",
+          "level": "borderline",
+          "score": 65,
+          "suggestions": [
+            "控制精制糖类摄入",
+            "限制饮酒",
+            "增加有氧运动"
+          ]
+        },
+        {
+          "name": "BMI指数",
+          "value": 25.5,
+          "normalRange": [
+            18.5,
+            24
+          ],
+          "unit": "kg/m²",
+          "level": "borderline",
+          "score": 70,
+          "suggestions": [
+            "控制饮食热量",
+            "增加有氧运动",
+            "每周至少运动3次"
+          ]
+        },
+        {
+          "name": "睡眠质量",
+          "value": 6.5,
+          "normalRange": [
+            7,
+            9
+          ],
+          "unit": "小时/天",
+          "level": "borderline",
+          "score": 68,
+          "suggestions": [
+            "固定作息时间",
+            "睡前避免屏幕蓝光",
+            "限制咖啡因摄入"
+          ]
+        }
+      ],
+      "healthDimensions": [
+        {
+          "dimension": "心血管健康",
+          "score": 75,
+          "level": "good",
+          "description": "评估血压、心率和心脏相关风险",
+          "indicators": [
+            "血压",
+            "静息心率"
+          ]
+        },
+        {
+          "dimension": "代谢健康",
+          "score": 72,
+          "level": "good",
+          "description": "评估血糖、血脂等代谢指标",
+          "indicators": [
+            "空腹血糖",
+            "总胆固醇",
+            "甘油三酯"
+          ]
+        },
+        {
+          "dimension": "营养状况",
+          "score": 70,
+          "level": "good",
+          "description": "基于BMI和饮食习惯的评估",
+          "indicators": [
+            "BMI",
+            "饮食习惯"
+          ]
+        },
+        {
+          "dimension": "心理健康",
+          "score": 68,
+          "level": "fair",
+          "description": "心理状态与睡眠质量评估",
+          "indicators": [
+            "睡眠质量",
+            "焦虑程度"
+          ]
+        },
+        {
+          "dimension": "生活习惯",
+          "score": 65,
+          "level": "fair",
+          "description": "运动、吸烟、饮酒等生活习惯",
+          "indicators": [
+            "运动频率",
+            "吸烟",
+            "饮酒"
+          ]
+        }
+      ],
+      "radarData": [
+        {
+          "dimension": "心血管",
+          "score": 75,
+          "maxScore": 100
+        },
+        {
+          "dimension": "代谢",
+          "score": 72,
+          "maxScore": 100
+        },
+        {
+          "dimension": "营养",
+          "score": 70,
+          "maxScore": 100
+        },
+        {
+          "dimension": "心理",
+          "score": 68,
+          "maxScore": 100
+        },
+        {
+          "dimension": "生活习惯",
+          "score": 65,
+          "maxScore": 100
+        }
+      ],
+      "trendData": [
+        {
+          "date": "1月",
+          "bloodPressure": 145,
+          "bloodSugar": 6.4,
+          "cholesterol": 6.2
+        },
+        {
+          "date": "2月",
+          "bloodPressure": 143,
+          "bloodSugar": 6.2,
+          "cholesterol": 6
+        },
+        {
+          "date": "3月",
+          "bloodPressure": 142,
+          "bloodSugar": 6,
+          "cholesterol": 5.8
+        },
+        {
+          "date": "4月",
+          "bloodPressure": 140,
+          "bloodSugar": 5.9,
+          "cholesterol": 5.7
+        },
+        {
+          "date": "5月",
+          "bloodPressure": 139,
+          "bloodSugar": 5.8,
+          "cholesterol": 5.6
+        },
+        {
+          "date": "6月",
+          "bloodPressure": 138,
+          "bloodSugar": 5.8,
+          "cholesterol": 5.6
+        }
+      ],
+      "summary": "您的健康状况总体不错，部分指标处于临界值。建议针对薄弱环节进行调整，预防潜在健康风险。",
+      "generatedAt": "2025-06-18T14:30:00Z"
+    },
+    {
+      "id": 1779524874104,
+      "userId": 2,
+      "overallScore": 80,
+      "overallLevel": "good",
+      "riskIndicators": [
+        {
+          "name": "血压",
+          "value": 130,
+          "normalRange": [
+            90,
+            139
+          ],
+          "unit": "mmHg",
+          "level": "borderline",
+          "score": 90,
+          "suggestions": [
+            "注意低盐饮食",
+            "每周测量血压1-2次",
+            "增加有氧运动"
+          ]
+        },
+        {
+          "name": "空腹血糖",
+          "value": 5.5,
+          "normalRange": [
+            3.9,
+            6.1
+          ],
+          "unit": "mmol/L",
+          "level": "normal",
+          "score": 86,
+          "suggestions": [
+            "保持均衡饮食",
+            "定期年度体检"
+          ]
+        },
+        {
+          "name": "总胆固醇",
+          "value": 4.8,
+          "normalRange": [
+            2.8,
+            5.2
+          ],
+          "unit": "mmol/L",
+          "level": "normal",
+          "score": 77,
+          "suggestions": [
+            "保持当前饮食习惯",
+            "继续定期检查"
+          ]
+        },
+        {
+          "name": "甘油三酯",
+          "value": 1.6,
+          "normalRange": [
+            0.4,
+            1.7
+          ],
+          "unit": "mmol/L",
+          "level": "normal",
+          "score": 73,
+          "suggestions": [
+            "控制精制糖类摄入",
+            "限制饮酒",
+            "增加有氧运动"
+          ]
+        },
+        {
+          "name": "BMI 指数",
+          "value": 25.5,
+          "normalRange": [
+            18.5,
+            24
+          ],
+          "unit": "kg/m²",
+          "level": "borderline",
+          "score": 79,
+          "suggestions": [
+            "保持当前体重",
+            "均衡膳食"
+          ]
+        },
+        {
+          "name": "睡眠质量",
+          "value": 7,
+          "normalRange": [
+            7,
+            9
+          ],
+          "unit": "小时/天",
+          "level": "normal",
+          "score": 80,
+          "suggestions": [
+            "保持规律作息",
+            "午休20-30分钟"
+          ]
+        }
+      ],
+      "healthDimensions": [
+        {
+          "dimension": "心血管健康",
+          "score": 90,
+          "level": "excellent",
+          "description": "评估血压、心率和心脏相关风险",
+          "indicators": [
+            "血压",
+            "静息心率"
+          ]
+        },
+        {
+          "dimension": "代谢健康",
+          "score": 86,
+          "level": "excellent",
+          "description": "评估血糖、血脂等代谢指标",
+          "indicators": [
+            "空腹血糖",
+            "总胆固醇",
+            "甘油三酯"
+          ]
+        },
+        {
+          "dimension": "营养状况",
+          "score": 79,
+          "level": "good",
+          "description": "基于BMI和饮食习惯的评估",
+          "indicators": [
+            "BMI",
+            "饮食习惯"
+          ]
+        },
+        {
+          "dimension": "心理健康",
+          "score": 80,
+          "level": "good",
+          "description": "心理状态与睡眠质量评估",
+          "indicators": [
+            "睡眠质量",
+            "焦虑程度"
+          ]
+        },
+        {
+          "dimension": "生活习惯",
+          "score": 40,
+          "level": "poor",
+          "description": "运动、吸烟、饮酒等生活习惯",
+          "indicators": [
+            "运动频率",
+            "吸烟",
+            "饮酒"
+          ]
+        }
+      ],
+      "radarData": [
+        {
+          "dimension": "心血管",
+          "score": 90,
+          "maxScore": 100
+        },
+        {
+          "dimension": "代谢",
+          "score": 86,
+          "maxScore": 100
+        },
+        {
+          "dimension": "营养",
+          "score": 79,
+          "maxScore": 100
+        },
+        {
+          "dimension": "心理",
+          "score": 80,
+          "maxScore": 100
+        },
+        {
+          "dimension": "生活习惯",
+          "score": 40,
+          "maxScore": 100
+        }
+      ],
+      "trendData": [
+        {
+          "date": "1月",
+          "bloodPressure": 115.5,
+          "bloodSugar": 5.1,
+          "cholesterol": 4.7
+        },
+        {
+          "date": "2月",
+          "bloodPressure": 123.8,
+          "bloodSugar": 5.5,
+          "cholesterol": 4
+        },
+        {
+          "date": "3月",
+          "bloodPressure": 118,
+          "bloodSugar": 5.2,
+          "cholesterol": 4.6
+        },
+        {
+          "date": "4月",
+          "bloodPressure": 135.7,
+          "bloodSugar": 5.7,
+          "cholesterol": 4.5
+        },
+        {
+          "date": "5月",
+          "bloodPressure": 126.7,
+          "bloodSugar": 5.1,
+          "cholesterol": 4.4
+        },
+        {
+          "date": "6月",
+          "bloodPressure": 138,
+          "bloodSugar": 5.7,
+          "cholesterol": 4.5
+        }
+      ],
+      "summary": "您的健康状况总体不错，部分指标处于临界值。建议针对薄弱环节进行调整，预防潜在健康风险。",
+      "generatedAt": "2026-05-23T08:27:54.104Z"
+    }
+  ],
+  "healthPlans": [
+    {
+      "id": 1,
+      "userId": 2,
+      "type": "diet",
+      "title": "个性化饮食方案",
+      "content": "基于您的代谢指标和BMI情况，建议采用以下饮食方案：控制总热量摄入，增加优质蛋白和膳食纤维比例，减少精制碳水和高脂食物。",
+      "items": [
+        {
+          "name": "全谷物主食",
+          "description": "每日主食中至少50%为全谷物，如糙米、燕麦、藜麦",
+          "frequency": "每日"
+        },
+        {
+          "name": "优质蛋白",
+          "description": "鱼类每周2-3次，去皮禽肉、豆制品适量",
+          "frequency": "每周"
+        },
+        {
+          "name": "蔬菜摄入",
+          "description": "每日蔬菜500g以上，深色蔬菜占一半",
+          "frequency": "每日"
+        },
+        {
+          "name": "控制用油",
+          "description": "每日烹调用油不超过25g",
+          "frequency": "每日"
+        }
+      ],
+      "createdAt": "2025-06-18T14:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "type": "exercise",
+      "title": "科学运动方案",
+      "content": "根据您的心血管评估结果，推荐以中低强度有氧运动为主，逐步增加运动强度和时长。",
+      "items": [
+        {
+          "name": "快走",
+          "description": "每次30-45分钟，心率控制在(220-年龄)×60%-70%",
+          "frequency": "每周5次",
+          "intensity": "medium"
+        },
+        {
+          "name": "游泳或骑行",
+          "description": "低冲击有氧运动，保护关节",
+          "frequency": "每周2次",
+          "intensity": "medium"
+        },
+        {
+          "name": "力量训练",
+          "description": "器械或自重训练，增强肌肉力量",
+          "frequency": "每周2次",
+          "intensity": "low"
+        },
+        {
+          "name": "拉伸放松",
+          "description": "运动后进行10-15分钟拉伸",
+          "frequency": "每次运动后",
+          "intensity": "low"
+        }
+      ],
+      "createdAt": "2025-06-18T14:30:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "type": "lifestyle",
+      "title": "生活方式调整建议",
+      "content": "良好的生活习惯是健康的基础，以下建议针对您的生活方式评估结果制定。",
+      "items": [
+        {
+          "name": "规律作息",
+          "description": "固定就寝和起床时间，保证7-8小时睡眠",
+          "frequency": "每日"
+        },
+        {
+          "name": "压力管理",
+          "description": "每天安排10-15分钟冥想或深呼吸练习",
+          "frequency": "每日"
+        },
+        {
+          "name": "社交活动",
+          "description": "保持适度的社交互动，参与兴趣小组",
+          "frequency": "每周1-2次"
+        },
+        {
+          "name": "定期体检",
+          "description": "每年至少一次全面健康体检",
+          "frequency": "每年"
+        }
+      ],
+      "createdAt": "2025-06-18T14:30:00Z"
+    }
+  ]
+}

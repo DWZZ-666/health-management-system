@@ -1,0 +1,166 @@
+/* ========== 全局样式 ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #409eff;
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+  --info-color: #909399;
+  --text-primary: #303133;
+  --text-regular: #606266;
+  --text-secondary: #909399;
+  --border-color: #dcdfe6;
+  --bg-color: #f5f7fa;
+  --header-height: 60px;
+  --sidebar-width: 240px;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* ========== 布局 ========== */
+.app-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.app-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: var(--bg-color);
+}
+
+/* 登录/注册页全屏居中 */
+.fullscreen-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* ========== 卡片容器 ========== */
+.page-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.page-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ========== 问卷样式 ========== */
+.questionnaire-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.question-item {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.question-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.question-title .required {
+  color: var(--danger-color);
+  margin-left: 4px;
+}
+
+/* ========== 报告样式 ========== */
+.report-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .app-content {
+    padding: 12px;
+  }
+
+  .page-card {
+    padding: 16px;
+  }
+
+  .questionnaire-card {
+    max-width: 100%;
+  }
+
+  .report-container {
+    max-width: 100%;
+  }
+
+  :root {
+    --sidebar-width: 0px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .report-container {
+    max-width: 960px;
+  }
+}
