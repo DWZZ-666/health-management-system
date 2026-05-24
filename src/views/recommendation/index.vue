@@ -55,7 +55,7 @@ const plans = ref<HealthPlan[]>([])
 const loading = ref(false)
 
 function planTypeTag(type: string): 'success' | 'warning' | '' | 'info' | 'danger' {
-  const map: Record<string, any> = { diet: 'success', exercise: 'warning', lifestyle: '', medical: 'danger' }
+  const map: Record<string, any> = { diet: 'success', exercise: 'warning', lifestyle: 'info', medical: 'danger' }
   return map[type] || 'info'
 }
 

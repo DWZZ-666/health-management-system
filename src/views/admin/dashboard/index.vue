@@ -24,7 +24,8 @@
       <el-col :xs="24" :lg="12">
         <el-card shadow="hover">
           <template #header><span class="card-title">最近评估报告</span></template>
-          <el-table :data="recentReports" stripe size="small" v-loading="loading">
+          <div class="table-responsive">
+            <el-table :data="recentReports" stripe size="small" v-loading="loading">
             <el-table-column prop="userName" label="用户" />
             <el-table-column prop="overallScore" label="综合评分" width="100">
               <template #default="{ row }">
@@ -47,6 +48,7 @@
               </template>
             </el-table-column>
           </el-table>
+          </div>
         </el-card>
       </el-col>
       <el-col :xs="24" :lg="12">
@@ -75,12 +77,12 @@
         <el-table :data="selectedReport.healthDimensions" size="small" stripe>
           <el-table-column prop="dimension" label="维度" width="120" />
           <el-table-column prop="score" label="评分" width="80">
-            <template #default="{ r }">
+            <template #default="{ row: r }">
               <el-tag :type="r.score >= 85 ? 'success' : r.score >= 70 ? '' : 'warning'" size="small">{{ r.score }}</el-tag>
             </template>
           </el-table-column>
           <el-table-column prop="level" label="等级" width="80">
-            <template #default="{ r }">{{ levelLabel(r.level) }}</template>
+            <template #default="{ row: r }">{{ levelLabel(r.level) }}</template>
           </el-table-column>
           <el-table-column prop="description" label="说明" />
         </el-table>

@@ -18,7 +18,8 @@
       </el-col>
     </el-row>
 
-    <el-table :data="pagedReports" stripe v-loading="loading" empty-text="暂无报告数据">
+    <div class="table-responsive">
+      <el-table :data="pagedReports" stripe v-loading="loading" empty-text="暂无报告数据">
       <el-table-column prop="id" label="ID" width="60" />
       <el-table-column prop="userName" label="用户" width="100" />
       <el-table-column prop="overallScore" label="综合评分" width="100">
@@ -43,6 +44,7 @@
         </template>
       </el-table-column>
     </el-table>
+    </div>
 
     <el-pagination
       v-model:current-page="page"
@@ -157,11 +159,15 @@ function viewReport(row: ReportRow) {
 async function handleDelete(id: number) {
   try {
     await ElMessageBox.confirm('确认删除该报告？', '提示', { type: 'warning' })
+  } catch {
+    return
+  }
+  try {
     await deleteReportApi(id)
     ElMessage.success('已删除')
     await fetchData()
   } catch {
-    // 取消
+    ElMessage.error('删除失败')
   }
 }
 

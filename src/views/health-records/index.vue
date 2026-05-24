@@ -7,7 +7,8 @@
       </el-button>
     </div>
 
-    <el-table :data="records" stripe v-loading="loading" empty-text="暂无健康档案">
+    <div class="table-responsive">
+      <el-table :data="records" stripe v-loading="loading" empty-text="暂无健康档案">
       <el-table-column prop="createdAt" label="日期" width="120">
         <template #default="{ row }">{{ formatDate(row.createdAt) }}</template>
       </el-table-column>
@@ -24,9 +25,9 @@
       <el-table-column prop="bloodSugar" label="空腹血糖" width="100">
         <template #default="{ row }">{{ row.bloodSugar }} mmol/L</template>
       </el-table-column>
-      <el-table-column label="血脂 (mmol/L)" width="160">
+      <el-table-column label="血脂 (mmol/L)" width="200">
         <template #default="{ row }">
-          TC {{ row.totalCholesterol }} | TG {{ row.triglycerides }}
+          TC {{ row.totalCholesterol }} | TG {{ row.triglycerides }} | HDL {{ row.hdl }} | LDL {{ row.ldl }}
         </template>
       </el-table-column>
       <el-table-column prop="heartRate" label="心率" width="80">
@@ -50,6 +51,7 @@
         </template>
       </el-table-column>
     </el-table>
+    </div>
 
     <el-dialog v-model="dialogVisible" :title="editId ? '编辑健康档案' : '新增健康档案'" width="750px" :close-on-click-modal="false">
       <el-form :model="form" label-width="120px" :rules="formRules" ref="formRef">
@@ -93,6 +95,18 @@
           <el-col :span="12">
             <el-form-item label="甘油三酯(mmol/L)">
               <el-input-number v-model="form.triglycerides" :min="0.3" :max="10" :precision="1" controls-position="right" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="HDL胆固醇(mmol/L)">
+              <el-input-number v-model="form.hdl" :min="0.3" :max="3" :precision="1" controls-position="right" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="16">
+          <el-col :span="12">
+            <el-form-item label="LDL胆固醇(mmol/L)">
+              <el-input-number v-model="form.ldl" :min="0.5" :max="8" :precision="1" controls-position="right" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -176,23 +190,29 @@ const editId = ref<number | null>(null)
 const formRef = ref()
 const records = ref<HealthRecord[]>([])
 
-const defaultForm = {
-  height: 170,
-  weight: 65,
-  systolicBP: 120,
-  diastolicBP: 80,
-  bloodSugar: 5.5,
-  totalCholesterol: 4.8,
-  triglycerides: 1.5,
-  heartRate: 72,
-  sleepHours: 7,
-  exerciseFrequency: 3,
-  smokingStatus: 'never' as 'never' | 'former' | 'current',
-  alcoholConsumption: 'none' as 'none' | 'light' | 'moderate' | 'heavy',
-  familyHistory: [] as string[],
+function getDefaultForm() {
+  return {
+    height: 170,
+    weight: 65,
+    systolicBP: 120,
+    diastolicBP: 80,
+    bloodSugar: 5.5,
+    totalCholesterol: 4.8,
+    triglycerides: 1.5,
+    hdl: 1.2,
+    ldl: 3.0,
+    heartRate: 72,
+    sleepHours: 7,
+    exerciseFrequency: 3,
+    smokingStatus: 'never' as 'never' | 'former' | 'current',
+    alcoholConsumption: 'none' as 'none' | 'light' | 'moderate' | 'heavy',
+    familyHistory: [] as string[],
+  }
 }
 
-const form = reactive({ ...defaultForm })
+const defaultForm = getDefaultForm()
+
+const form = reactive(getDefaultForm())
 
 const formRules = {
   height: [{ required: true, message: '请输入身高' }],
@@ -236,6 +256,8 @@ function openDialog(row?: HealthRecord) {
       bloodSugar: row.bloodSugar,
       totalCholesterol: row.totalCholesterol,
       triglycerides: row.triglycerides,
+      hdl: row.hdl,
+      ldl: row.ldl,
       heartRate: row.heartRate,
       sleepHours: row.sleepHours,
       exerciseFrequency: row.exerciseFrequency,
@@ -245,6 +267,7 @@ function openDialog(row?: HealthRecord) {
     })
   } else {
     Object.assign(form, defaultForm)
+    form.familyHistory = []
   }
   dialogVisible.value = true
 }
@@ -264,8 +287,8 @@ async function handleSave() {
     bloodSugar: form.bloodSugar,
     totalCholesterol: form.totalCholesterol,
     triglycerides: form.triglycerides,
-    hdl: 1.2,
-    ldl: 3.0,
+    hdl: form.hdl,
+    ldl: form.ldl,
     heartRate: form.heartRate,
     sleepHours: form.sleepHours,
     exerciseFrequency: form.exerciseFrequency,
@@ -291,11 +314,15 @@ async function handleSave() {
 async function handleDelete(id: number) {
   try {
     await ElMessageBox.confirm('确认删除该档案？', '提示', { type: 'warning' })
+  } catch {
+    return
+  }
+  try {
     await deleteHealthRecordApi(id)
     ElMessage.success('已删除')
     await fetchRecords()
   } catch {
-    // 取消删除
+    ElMessage.error('删除失败')
   }
 }
 

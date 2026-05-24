@@ -38,8 +38,12 @@ export function removeRefreshToken(): void {
 
 /** 获取本地用户信息 */
 export function getLocalUserInfo<T = any>(): T | null {
-  const raw = localStorage.getItem(USER_INFO_KEY)
-  return raw ? JSON.parse(raw) : null
+  try {
+    const raw = localStorage.getItem(USER_INFO_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
 }
 
 /** 设置本地用户信息 */
@@ -57,6 +61,7 @@ export function clearAuth(): void {
 /** 格式化日期 */
 export function formatDate(date: string | Date, fmt = 'YYYY-MM-DD'): string {
   const d = new Date(date)
+  if (isNaN(d.getTime())) return '--'
   const map: Record<string, string> = {
     YYYY: String(d.getFullYear()),
     MM: String(d.getMonth() + 1).padStart(2, '0'),

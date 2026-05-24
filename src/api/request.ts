@@ -5,7 +5,7 @@ import router from '@/router'
 import type { ApiResponse } from '@/types'
 
 const service: AxiosInstance = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 15000,
   headers: { 'Content-Type': 'application/json;charset=utf-8' },
 })

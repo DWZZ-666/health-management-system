@@ -3,11 +3,8 @@
     <div class="page-card">
       <div class="page-header">
         <h2 class="page-title">健康风险评估问卷</h2>
-        <el-steps :active="currentStep" align-center style="flex:1;max-width:500px">
-          <el-step title="基本信息" />
-          <el-step title="生活习惯" />
-          <el-step title="身体状况" />
-          <el-step title="心理 & 家族史" />
+        <el-steps :active="currentStep" align-center style="flex:1;max-width:600px">
+          <el-step v-for="cat in categories" :key="cat" :title="cat" />
         </el-steps>
       </div>
 

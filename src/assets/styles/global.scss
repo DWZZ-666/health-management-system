@@ -134,6 +134,13 @@ a {
   color: var(--text-primary);
 }
 
+/* ========== 表格响应式滚动 ========== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* ========== 响应式 ========== */
 @media (max-width: 768px) {
   .app-content {
@@ -150,10 +157,6 @@ a {
 
   .report-container {
     max-width: 100%;
-  }
-
-  :root {
-    --sidebar-width: 0px;
   }
 }
 

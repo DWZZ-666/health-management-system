@@ -17,7 +17,7 @@
         <el-form-item label="用户名" prop="username">
           <el-input
             v-model="form.username"
-            placeholder="请输入用户名（admin / zhangsan / lisi）"
+            placeholder="请输入用户名"
             :prefix-icon="User"
             clearable
           />
@@ -27,7 +27,7 @@
           <el-input
             v-model="form.password"
             type="password"
-            placeholder="请输入密码（admin123 / 123456）"
+            placeholder="请输入密码"
             :prefix-icon="Lock"
             show-password
             @keyup.enter="handleLogin"
@@ -47,8 +47,7 @@
       </el-form>
 
       <div class="login-footer">
-        <span>提示：管理员 admin / admin123</span>
-        <span>用户 zhangsan / 123456</span>
+        <span>融合健康风险评估的智能健康管理平台</span>
       </div>
     </div>
   </div>
@@ -70,8 +69,8 @@ const formRef = ref<FormInstance>()
 const loading = ref(false)
 
 const form = reactive<LoginParams>({
-  username: 'admin',
-  password: 'admin123',
+  username: '',
+  password: '',
 })
 
 const rules: FormRules = {

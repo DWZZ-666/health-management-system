@@ -10,7 +10,8 @@
       </el-col>
     </el-row>
 
-    <el-table :data="pagedRecords" stripe v-loading="loading" empty-text="暂无档案数据">
+    <div class="table-responsive">
+      <el-table :data="pagedRecords" stripe v-loading="loading" empty-text="暂无档案数据">
       <el-table-column prop="id" label="ID" width="60" />
       <el-table-column prop="userName" label="用户" width="100" />
       <el-table-column prop="bmi" label="BMI" width="80">
@@ -36,6 +37,7 @@
         </template>
       </el-table-column>
     </el-table>
+    </div>
 
     <el-pagination
       v-model:current-page="page"
@@ -81,11 +83,15 @@ const pagedRecords = computed(() => {
 async function handleDelete(id: number) {
   try {
     await ElMessageBox.confirm('确认删除该档案？', '提示', { type: 'warning' })
+  } catch {
+    return
+  }
+  try {
     await deleteHealthRecordApi(id)
     ElMessage.success('已删除')
     await fetchData()
   } catch {
-    // 取消
+    ElMessage.error('删除失败')
   }
 }
 

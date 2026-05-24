@@ -19,7 +19,8 @@
       </el-col>
     </el-row>
 
-    <el-table :data="pagedUsers" stripe v-loading="loading" empty-text="暂无用户数据">
+    <div class="table-responsive">
+      <el-table :data="pagedUsers" stripe v-loading="loading" empty-text="暂无用户数据">
       <el-table-column prop="id" label="ID" width="60" />
       <el-table-column prop="username" label="用户名" width="120" />
       <el-table-column prop="nickname" label="昵称" width="100" />
@@ -42,6 +43,7 @@
         </template>
       </el-table-column>
     </el-table>
+    </div>
 
     <el-pagination
       v-model:current-page="page"
@@ -198,11 +200,15 @@ async function handleSave() {
 async function handleDelete(id: number) {
   try {
     await ElMessageBox.confirm('确认删除该用户？此操作不可恢复', '提示', { type: 'warning' })
+  } catch {
+    return
+  }
+  try {
     await deleteUserApi(id)
     ElMessage.success('已删除')
     await fetchUsers()
   } catch {
-    // 取消
+    ElMessage.error('删除失败')
   }
 }
 

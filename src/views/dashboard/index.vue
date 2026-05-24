@@ -82,13 +82,13 @@ const statCards = ref([
 ])
 
 const quickActions = ref([
-  { label: '填写档案', icon: Plus, path: '/health-records', color: '#409eff', show: true },
-  { label: '风险评估', icon: Search, path: '/questionnaire', color: '#e6a23c', show: true },
-  { label: '查看报告', icon: DataAnalysis, path: '/report', color: '#67c23a', show: false },
-  { label: '健康方案', icon: Guide, path: '/recommendation', color: '#909399', show: false },
+  { label: '填写档案', icon: Plus, path: '/health-records', color: '#409eff' },
+  { label: '风险评估', icon: Search, path: '/questionnaire', color: '#e6a23c' },
+  { label: '查看报告', icon: DataAnalysis, path: '/report', color: '#67c23a' },
+  { label: '健康方案', icon: Guide, path: '/recommendation', color: '#909399' },
 ])
 
-const visibleActions = computed(() => quickActions.value.filter(a => a.show))
+const visibleActions = computed(() => quickActions.value)
 
 const healthTips = [
   '每天保持30分钟中等强度运动',
@@ -119,12 +119,6 @@ async function loadStats() {
       { label: '健康报告', value: `${reports.length} 份`, icon: DataAnalysis, bgColor: '#f6ffed' },
       { label: '健康方案', value: `${plans.length} 项`, icon: Guide, bgColor: '#f0f5ff' },
     ]
-
-    const hasReport = reports.length > 0
-    quickActions.value[0].show = !hasReport
-    quickActions.value[1].show = !hasReport
-    quickActions.value[2].show = hasReport
-    quickActions.value[3].show = hasReport
   } catch {
     statCards.value.forEach(c => { c.value = '--' })
   }

@@ -265,7 +265,7 @@ let resizeTimer: ReturnType<typeof setTimeout> | null = null
 
 // ---- 辅助计算 ----
 const levelTagType = computed<'success' | 'warning' | 'danger' | 'info'>(() => {
-  const map: Record<string, any> = { excellent: 'success', good: '', fair: 'warning', poor: 'danger' }
+  const map: Record<string, any> = { excellent: 'success', good: 'info', fair: 'warning', poor: 'danger' }
   return report.value ? map[report.value.overallLevel] : 'info'
 })
 
