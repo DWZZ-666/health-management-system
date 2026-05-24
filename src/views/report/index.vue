@@ -99,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick, watch } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Check } from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
@@ -253,10 +253,15 @@ function initLineChart() {
 }
 
 function handleResize() {
-  radarChart?.resize()
-  barChart?.resize()
-  lineChart?.resize()
+  if (resizeTimer) clearTimeout(resizeTimer)
+  resizeTimer = setTimeout(() => {
+    radarChart?.resize()
+    barChart?.resize()
+    lineChart?.resize()
+  }, 200)
 }
+
+let resizeTimer: ReturnType<typeof setTimeout> | null = null
 
 // ---- 辅助计算 ----
 const levelTagType = computed<'success' | 'warning' | 'danger' | 'info'>(() => {
@@ -292,6 +297,14 @@ onMounted(async () => {
   initBarChart()
   initLineChart()
   window.addEventListener('resize', handleResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+  if (resizeTimer) clearTimeout(resizeTimer)
+  radarChart?.dispose()
+  barChart?.dispose()
+  lineChart?.dispose()
 })
 
 // 监听路由进入（从问卷跳转过来时数据可能已更新）

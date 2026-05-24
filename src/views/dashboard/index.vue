@@ -23,7 +23,7 @@
             <span class="card-header-title">快捷操作</span>
           </template>
           <el-row :gutter="12">
-            <el-col :xs="12" :sm="6" v-for="action in quickActions" :key="action.label">
+            <el-col :xs="12" :sm="6" v-for="action in visibleActions" :key="action.label">
               <div class="quick-action" @click="router.push(action.path)">
                 <el-icon :size="32" :color="action.color">
                   <component :is="action.icon" />
@@ -43,7 +43,6 @@
             <el-timeline-item
               v-for="(tip, idx) in healthTips"
               :key="idx"
-              :timestamp="''"
               placement="top"
             >
               {{ tip }}
@@ -56,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import {
   Document,
@@ -64,34 +64,31 @@ import {
   Guide,
   Plus,
   Search,
-  TrendCharts,
-  SetUp,
 } from '@element-plus/icons-vue'
 import { useUserStore } from '@/stores/user'
 import { useAppStore } from '@/stores/app'
-import { onMounted } from 'vue'
+import { getHealthRecordsByUserApi } from '@/api/healthRecord'
+import { getReportHistoryApi, getHealthPlansApi } from '@/api/report'
 
 const router = useRouter()
 const userStore = useUserStore()
 const appStore = useAppStore()
 
-onMounted(() => {
-  appStore.setPageTitle('工作台')
-})
+const statCards = ref([
+  { label: '健康档案', value: '加载中...', icon: Document, bgColor: '#e6f7ff' },
+  { label: '风险评估', value: '加载中...', icon: Edit, bgColor: '#fff7e6' },
+  { label: '健康报告', value: '加载中...', icon: DataAnalysis, bgColor: '#f6ffed' },
+  { label: '健康方案', value: '加载中...', icon: Guide, bgColor: '#f0f5ff' },
+])
 
-const statCards = [
-  { label: '健康档案', value: '已建档', icon: Document, bgColor: '#e6f7ff' },
-  { label: '风险评估', value: '待评估', icon: Edit, bgColor: '#fff7e6' },
-  { label: '健康报告', value: '1 份', icon: DataAnalysis, bgColor: '#f6ffed' },
-  { label: '健康方案', value: '3 项', icon: Guide, bgColor: '#f0f5ff' },
-]
+const quickActions = ref([
+  { label: '填写档案', icon: Plus, path: '/health-records', color: '#409eff', show: true },
+  { label: '风险评估', icon: Search, path: '/questionnaire', color: '#e6a23c', show: true },
+  { label: '查看报告', icon: DataAnalysis, path: '/report', color: '#67c23a', show: false },
+  { label: '健康方案', icon: Guide, path: '/recommendation', color: '#909399', show: false },
+])
 
-const quickActions = [
-  { label: '填写档案', icon: Plus, path: '/health-records', color: '#409eff' },
-  { label: '风险评估', icon: Search, path: '/questionnaire', color: '#e6a23c' },
-  { label: '查看报告', icon: DataAnalysis, path: '/report', color: '#67c23a' },
-  { label: '健康方案', icon: Guide, path: '/recommendation', color: '#909399' },
-]
+const visibleActions = computed(() => quickActions.value.filter(a => a.show))
 
 const healthTips = [
   '每天保持30分钟中等强度运动',
@@ -100,6 +97,43 @@ const healthTips = [
   '保持7-8小时充足睡眠',
   '每年定期进行健康体检',
 ]
+
+async function loadStats() {
+  const userId = userStore.userId
+  if (!userId) return
+
+  try {
+    const [recordsRes, reportsRes, plansRes] = await Promise.all([
+      getHealthRecordsByUserApi(userId),
+      getReportHistoryApi(userId),
+      getHealthPlansApi(userId),
+    ])
+
+    const records = recordsRes.data
+    const reports = reportsRes.data
+    const plans = plansRes.data
+
+    statCards.value = [
+      { label: '健康档案', value: `${records.length} 份`, icon: Document, bgColor: '#e6f7ff' },
+      { label: '风险评估', value: reports.length > 0 ? '已完成' : '待评估', icon: Edit, bgColor: '#fff7e6' },
+      { label: '健康报告', value: `${reports.length} 份`, icon: DataAnalysis, bgColor: '#f6ffed' },
+      { label: '健康方案', value: `${plans.length} 项`, icon: Guide, bgColor: '#f0f5ff' },
+    ]
+
+    const hasReport = reports.length > 0
+    quickActions.value[0].show = !hasReport
+    quickActions.value[1].show = !hasReport
+    quickActions.value[2].show = hasReport
+    quickActions.value[3].show = hasReport
+  } catch {
+    statCards.value.forEach(c => { c.value = '--' })
+  }
+}
+
+onMounted(() => {
+  appStore.setPageTitle('工作台')
+  loadStats()
+})
 </script>
 
 <style scoped lang="scss">
