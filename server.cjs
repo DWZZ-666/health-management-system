@@ -352,7 +352,7 @@ router.render = (req, res) => {
 server.use('/api', router)
 
 // ===================== 启动 =====================
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 server.listen(PORT, () => {
   console.log(`[Mock Server] 运行在 http://localhost:${PORT}`)
   console.log(`[Mock Server] 可用端点:`)
