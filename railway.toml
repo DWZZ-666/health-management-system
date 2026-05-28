@@ -1,5 +1,0 @@
-[build]
-  buildCommand = "echo 'Backend only — no build required'"
-
-[deploy]
-  startCommand = "node server.cjs"

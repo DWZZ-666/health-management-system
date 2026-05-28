@@ -2,7 +2,7 @@
   <div class="dashboard">
     <el-row :gutter="20">
       <el-col :xs="24" :sm="12" :lg="6" v-for="card in statCards" :key="card.label">
-        <el-card class="stat-card" shadow="hover">
+        <el-card class="stat-card" shadow="hover" @click="router.push(card.path)">
           <div class="stat-content">
             <div class="stat-icon" :style="{ background: card.bgColor }">
               <el-icon :size="28"><component :is="card.icon" /></el-icon>
@@ -75,10 +75,10 @@ const userStore = useUserStore()
 const appStore = useAppStore()
 
 const statCards = ref([
-  { label: '健康档案', value: '加载中...', icon: Document, bgColor: '#e6f7ff' },
-  { label: '风险评估', value: '加载中...', icon: Edit, bgColor: '#fff7e6' },
-  { label: '健康报告', value: '加载中...', icon: DataAnalysis, bgColor: '#f6ffed' },
-  { label: '健康方案', value: '加载中...', icon: Guide, bgColor: '#f0f5ff' },
+  { label: '健康档案', value: '加载中...', icon: Document, bgColor: '#e6f7ff', path: '/health-records' },
+  { label: '风险评估', value: '加载中...', icon: Edit, bgColor: '#fff7e6', path: '/questionnaire' },
+  { label: '健康报告', value: '加载中...', icon: DataAnalysis, bgColor: '#f6ffed', path: '/report' },
+  { label: '健康方案', value: '加载中...', icon: Guide, bgColor: '#f0f5ff', path: '/recommendation' },
 ])
 
 const quickActions = ref([
@@ -114,10 +114,10 @@ async function loadStats() {
     const plans = plansRes.data
 
     statCards.value = [
-      { label: '健康档案', value: `${records.length} 份`, icon: Document, bgColor: '#e6f7ff' },
-      { label: '风险评估', value: reports.length > 0 ? '已完成' : '待评估', icon: Edit, bgColor: '#fff7e6' },
-      { label: '健康报告', value: `${reports.length} 份`, icon: DataAnalysis, bgColor: '#f6ffed' },
-      { label: '健康方案', value: `${plans.length} 项`, icon: Guide, bgColor: '#f0f5ff' },
+      { label: '健康档案', value: `${records.length} 份`, icon: Document, bgColor: '#e6f7ff', path: '/health-records' },
+      { label: '风险评估', value: reports.length > 0 ? '已完成' : '待评估', icon: Edit, bgColor: '#fff7e6', path: '/questionnaire' },
+      { label: '健康报告', value: `${reports.length} 份`, icon: DataAnalysis, bgColor: '#f6ffed', path: '/report' },
+      { label: '健康方案', value: `${plans.length} 项`, icon: Guide, bgColor: '#f0f5ff', path: '/recommendation' },
     ]
   } catch {
     statCards.value.forEach(c => { c.value = '--' })
@@ -133,6 +133,12 @@ onMounted(() => {
 <style scoped lang="scss">
 .stat-card {
   margin-bottom: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .stat-content {

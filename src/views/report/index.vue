@@ -106,6 +106,7 @@ import * as echarts from 'echarts'
 import { useReportStore } from '@/stores/report'
 import { useUserStore } from '@/stores/user'
 import { useAppStore } from '@/stores/app'
+import { getReportHistoryApi } from '@/api/report'
 import type { RiskReport } from '@/types'
 
 const router = useRouter()
@@ -292,6 +293,19 @@ function dimensionLevelLabel(level: string): string {
 // ---- 生命周期 ----
 onMounted(async () => {
   appStore.setPageTitle('健康评估报告')
+
+  // 刷新后 store 丢失，从 API 恢复最新报告
+  if (!report.value) {
+    try {
+      const res = await getReportHistoryApi(userStore.userId)
+      if (res.data.length > 0) {
+        reportStore.setCurrentReport(res.data[0])
+      }
+    } catch {
+      // 无报告或请求失败，保持空状态
+    }
+  }
+
   await nextTick()
   initRadarChart()
   initBarChart()

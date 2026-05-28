@@ -1504,28 +1504,6 @@
       "updatedAt": "2026-01-21T16:00:00.000Z"
     },
     {
-      "id": 36,
-      "userId": 1,
-      "height": 159,
-      "weight": 93,
-      "bmi": 36.8,
-      "systolicBP": 130,
-      "diastolicBP": 78,
-      "bloodSugar": 5.1,
-      "totalCholesterol": 3.7,
-      "triglycerides": 2.4,
-      "hdl": 1.9,
-      "ldl": 3.6,
-      "heartRate": 60,
-      "sleepHours": 10,
-      "exerciseFrequency": 2,
-      "smokingStatus": "never",
-      "alcoholConsumption": "none",
-      "familyHistory": [],
-      "createdAt": "2025-07-10T16:00:00.000Z",
-      "updatedAt": "2026-01-21T16:00:00.000Z"
-    },
-    {
       "id": 37,
       "userId": 45,
       "height": 156,
@@ -3056,6 +3034,26 @@
       "familyHistory": [],
       "createdAt": "2025-04-15T16:00:00.000Z",
       "updatedAt": "2026-05-22T16:00:00.000Z"
+    },
+    {
+      "userId": 1,
+      "height": 170,
+      "weight": 65,
+      "bmi": 22.5,
+      "systolicBP": 120,
+      "diastolicBP": 80,
+      "bloodSugar": 5.5,
+      "totalCholesterol": 4.8,
+      "triglycerides": 1.5,
+      "hdl": 1.2,
+      "ldl": 3,
+      "heartRate": 72,
+      "sleepHours": 7,
+      "exerciseFrequency": 3,
+      "smokingStatus": "never",
+      "alcoholConsumption": "none",
+      "familyHistory": [],
+      "id": 101
     }
   ],
   "questions": [
